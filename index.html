@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Rock Paper Scissors Game</title>
+    <script type="text/javascript">
+        const choices = ['paper', 'rock', 'scissors'];
+        var computerScore = 0;
+        var userScore = 0;
+
+
+
+        function computerPlay() {
+
+            const randomNumber = Math.round(Math.random() * 2);
+            console.log(choices[Math.round(Math.random() * choices.length)]);
+            return choices[randomNumber];
+
+        }
+
+        function playerPlay() {
+            var playerSelection = prompt("enter rock, paper, scissors").toLocaleLowerCase();
+
+            return playerSelection;
+        }
+
+
+        function playRound() {
+            var playerSelection = playerPlay();
+            var computerSelection = computerPlay();
+            if (playerSelection === computerSelection) {
+                alert('its a tie :P');
+            } else if (playerSelection === "") {
+                alert('invalid, try again');
+            } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
+                computerScore++;
+                alert('you louse D:');
+            } else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock") || (playerSelection === "scissors" && computerSelection === "paper")) {
+                userScore++;
+                alert('you win');
+            } else(alert('incorrect value'));
+
+        }
+
+        function endGame() {
+            if (computerScore < userScore) {
+                alert("you win the game");
+            } else if (computerScore === userScore) {
+                alert("its a tie, try again");
+            } else(alert("congratulation, you louse the game"));
+        }
+
+        playRound();
+
+        function game(maxScore) {
+            while ((computerScore <= maxScore) || (userScore <= maxScore)) {
+                playRound();
+
+            }
+            endGame();
+        }
+
+        game(5);
+        document.write("computer:" + computerScore + "<br>" + "player:" + userScore);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
